@@ -4,6 +4,7 @@
       <audio
         ref="audioEl"
         data-testid="audio"
+        autoplay
         class="app-player__audio"
         :src="url"
       />
@@ -11,6 +12,7 @@
       <button
         class="app-player__start"
         data-testid="start-btn"
+        :disabled="!url"
         @click="audio.togglePlay()"
       >
         <pause-icon v-show="audio.isPlaying.value" />

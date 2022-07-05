@@ -5,7 +5,7 @@ function error() {
 }
 
 export function useAudio(el: Ref<HTMLAudioElement | null>) {
-  const isPlaying = ref(false);
+  const isPlaying = ref(true);
   const muted = ref(false);
   const volume = ref(1);
   const duration = ref(0);

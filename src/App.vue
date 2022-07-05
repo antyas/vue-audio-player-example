@@ -1,16 +1,16 @@
-
 <template>
   <div class="app">
-    <app-url-field />
+    <app-url-field @update:url="v => url = v" />
     <app-player :url="url" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import AppPlayer from '@/components/AppPlayer.vue';
 import AppUrlField from './components/AppUrlField.vue';
 
-const url = 'https://ru.drivemusic.me/dl/NSacDaI3qo4bp5su1zBpNg/1656987586/download_music/2021/01/rammstein-auslander.mp3';
+const url = ref('');
 </script>
 
 <style lang="scss">
