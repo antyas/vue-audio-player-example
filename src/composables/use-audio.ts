@@ -27,12 +27,18 @@ export function useAudio(el: Ref<HTMLAudioElement | null>) {
     time.value = el.value?.currentTime || 0;
   }
 
+  function onPlayChange() {
+    isPlaying.value = !el.value?.paused;
+  }
+
   onMounted(() => {
     if (!el.value) return;
 
     el.value.addEventListener('volumechange', onVolume);
     el.value.addEventListener('durationchange', onDuration);
     el.value.addEventListener('timeupdate', onTime);
+    el.value.addEventListener('play', onPlayChange);
+    el.value.addEventListener('pause', onPlayChange);
   });
 
   onUnmounted(() => {
@@ -41,6 +47,8 @@ export function useAudio(el: Ref<HTMLAudioElement | null>) {
     el.value.removeEventListener('volumechange', onVolume);
     el.value.removeEventListener('durationchange', onDuration);
     el.value.removeEventListener('timeupdate', onTime);
+    el.value.removeEventListener('play', onPlayChange);
+    el.value.removeEventListener('pause', onPlayChange);
   });
 
   function togglePlay() {
@@ -48,10 +56,8 @@ export function useAudio(el: Ref<HTMLAudioElement | null>) {
 
     if (isPlaying.value) {
       el.value?.pause();
-      isPlaying.value = false;
     } else {
       el.value?.play();
-      isPlaying.value = true;
     }
   }
 
