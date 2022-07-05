@@ -1,0 +1,27 @@
+$primary: #444;
+$secondary: #888;
+
+@mixin text() {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
+  color: $secondary;
+}
+
+@mixin icon-button() {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+
+@mixin activated {
+  &:hover, &:focus-visible {
+    color: $primary;
+    border-color: $primary;
+    outline-color: $primary auto 2px;
+  }
+}
